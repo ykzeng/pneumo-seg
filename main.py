@@ -3,6 +3,7 @@ from optparse import OptionParser
 import glob
 import pandas as pd
 from preproc import preproc
+from dummy import dummy
 
 
 def main():
@@ -39,7 +40,10 @@ def main():
     print("train_csv:"+train_csv)
     # train_fns = sorted(glob.glob(train_glob))[:500]
     # df_full = pd.read_csv(train_csv, index_col='ImageId')
+    # FIXME remove the limit if you wanna run with full data
     x, y = preproc(train_dir, train_csv, limit=50)
+    model = dummy()
+    model.train(x, y)
 
 
 if __name__ == '__main__':
